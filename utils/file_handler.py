@@ -1,7 +1,7 @@
 """
 Verifizer — utils/file_handler.py
 Handles uploaded files — detects type, extracts text from PDFs,
-prepares images for Vision API, validates audio files.
+prepares images for Vision API, validates audio filess.
 """
 
 import io
