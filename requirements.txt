@@ -1,0 +1,24 @@
+# Verifizer — requirements.txt
+# Python 3.10 compatible
+# Install with: pip install -r requirements.txt
+
+# Core AI
+openai==1.35.15               # GPT-4o Vision + GPT-4o-mini + Whisper
+
+# UI & Deployment
+streamlit==1.35.0             # UI framework + Streamlit Cloud deployment
+streamlit-webrtc==0.47.9      # Live mic capture in browser
+
+# Document Parsing
+PyMuPDF==1.24.14              # PDF text + image extraction
+
+# Image Handling
+Pillow==10.4.0                # Image processing for document photos
+
+# Audio
+gTTS==2.5.4                   # Text-to-speech for voice output (free)
+pydub==0.25.1                 # Audio file handling/conversion
+av==12.3.0                    # Required by streamlit-webrtc (audio/video frames)
+
+# Environment
+python-dotenv==1.0.1          # Load API keys from .env file
