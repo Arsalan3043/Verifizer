@@ -34,6 +34,11 @@ def init_session_state():
         # Each entry: {"role": "user"|"assistant", "content": str, "audio_bytes": bytes|None}
         "chat_history": [],
 
+        # ── Mic ───────────────────────────────────────
+        "verify_mic_transcript": "",   # auto-transcribed from verify mic
+        "verify_mic_last_size":  0,    # prevents re-transcribing same recording
+        "chat_mic_last_size":    0,    # prevents re-transcribing same recording
+
     }
 
     for key, value in defaults.items():
@@ -46,15 +51,18 @@ def reset_document_state():
     Call this when a new document is uploaded.
     Clears all derived data so stale results don't carry over.
     """
-    st.session_state.doc_parsed          = False
-    st.session_state.doc_text            = None
-    st.session_state.doc_filename        = None
-    st.session_state.doc_type            = None
-    st.session_state.skill_choice        = "Auto-detect"
-    st.session_state.audio_transcript    = None
-    st.session_state.extracted_claims    = None
-    st.session_state.verification_result = None
-    st.session_state.chat_history        = []
+    st.session_state.doc_parsed             = False
+    st.session_state.doc_text               = None
+    st.session_state.doc_filename           = None
+    st.session_state.doc_type               = None
+    st.session_state.skill_choice           = "Auto-detect"
+    st.session_state.audio_transcript       = None
+    st.session_state.extracted_claims       = None
+    st.session_state.verification_result    = None
+    st.session_state.chat_history           = []
+    st.session_state.verify_mic_transcript  = ""
+    st.session_state.verify_mic_last_size   = 0
+    st.session_state.chat_mic_last_size     = 0
 
 
 def reset_verification_state():
@@ -62,6 +70,8 @@ def reset_verification_state():
     Call this when the user uploads a new audio file or changes typed claims.
     Only clears verification output, keeps document and chat intact.
     """
-    st.session_state.audio_transcript    = None
-    st.session_state.extracted_claims    = None
-    st.session_state.verification_result = None
+    st.session_state.audio_transcript       = None
+    st.session_state.extracted_claims       = None
+    st.session_state.verification_result    = None
+    st.session_state.verify_mic_transcript  = ""
+    st.session_state.verify_mic_last_size   = 0

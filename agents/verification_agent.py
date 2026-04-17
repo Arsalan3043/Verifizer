@@ -21,7 +21,7 @@ import json
 import re
 
 from openai import OpenAI
-from claims_agent import format_claims_for_prompt
+from agents.claims_agent import format_claims_for_prompt
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
